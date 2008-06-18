@@ -11,7 +11,7 @@ use WWW::SchneierFacts::Fact;
 
 use namespace::clean -except => [qw(meta)];
 
-our $VERSION = "0.01";
+our $VERSION = "0.02";
 
 has cache => (
 	isa => "HashRef[WWW::SchneierFacts::Fact]",
@@ -176,6 +176,14 @@ WWW::SchneierFacts - API for retrieving facts about Bruce Schneier
 =head1 SYNOPSIS
 
 	use WWW::SchneierFacts;
+
+	my $db = WWW::SchneierFacts->new;
+
+	foreach my $fact ( $db->top_facts ) {
+		print "$fact\n",
+		      ( $fact->author ? ( "  --", $fact->author, "\n" ) : () ),
+		      "\n";
+	}
 
 =head1 DESCRIPTION
 
